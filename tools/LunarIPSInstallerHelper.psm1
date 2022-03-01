@@ -1,6 +1,3 @@
-using namespace System
-using namespace System.Security.Principal
-
 #Requires -Version 4.0
 
 enum WindowStyle {
@@ -10,7 +7,7 @@ enum WindowStyle {
 }
 
 function Confirm-Administrator {
-    [WindowsPrincipal]$me = [Security.Principal.WindowsIdentity]::GetCurrent()
+    [Security.Principal.WindowsPrincipal]$me = [Security.Principal.WindowsIdentity]::GetCurrent()
     $me.IsInRole([Security.Principal.WindowsBuiltInRole] "Administrator")
 }
 
