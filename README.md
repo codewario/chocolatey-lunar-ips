@@ -1,4 +1,4 @@
-﻿## Summary
+﻿## lunar-ips
 
 This Chocolatey package installs Lunar IPS, a file patching utility. The below summary is from the project's homepage.
 
@@ -27,9 +27,34 @@ You must ensure [Chocolatey is installed](https://chocolatey.org/install) before
 Once Chocolatey is installed, run the following to install **Lunar IPS**
 
 ```powershell
-choco install -y lunar-ips
+choco install lunar-ips
 ```
 
+### Different Languages
+
+As **Lunar IPS** supports multiple languages, so too does this package. You can install any of the supported languages, for example, let's install the **German** version:
+
+```powershell
+choco install lunar-ips --params "'/Language:German'"
+```
+
+If we later decide we want another language, we can force-install with that language instead:
+
+```powershell
+choco install lunar-ips --params "'/Language:English'"
+```
+
+At this time of writing, **Lunar IPS** supports the following languages:
+
+- English (default if unspecified)
+- Croatian
+- Dutch
+- German
+- Portuguese
+- Spanish
+- Swedish
+
+Keep in mind that installing a different language will overwrite the currently installed files with the new language.
 ## Running **Lunar IPS**
 
 This package adds two shortcuts to the Start Menu as well for **Lunar IPS** (32 and 64 bit variants), making it easy to launch without having to customize the Start Menu yourself.

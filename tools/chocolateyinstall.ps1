@@ -1,5 +1,15 @@
-﻿# TODO: This should accept an optional language from package parameters (default to en)
-$langParam = 'en'
+﻿$pp = Get-PackageParameters
+
+# Get the specified language from package params, if provided
+# Otherwise, defaulting to english
+$langParam = if( $pp['Language'] ) {
+  $pp['Language']
+} else {
+  Write-Warning 'No language was provided via package parameters, defaulting to English'
+  'English'
+}
+
+Write-Host "Installing the $langParam version of Lunar IPS"
 
 $ErrorActionPreference = 'Stop'
 $toolsDir = "$(Split-Path -parent $MyInvocation.MyCommand.Definition)"
@@ -8,18 +18,17 @@ $unzipLocation = "$toolsDir/LunarIPS"
 Import-Module "$toolsDir/LunarIPSInstallerHelper.psm1"
 
 # URL is the same with a lang-specific zip archive
-# Accept text or appropriate locale ids. Unfortunately, not sure what dialect the Spanish and Swedish 
 # 64-bit exe is in the same archive. Will do some magic around this later.
 $url = "https://fusoya.eludevisibility.org/lips/download/$(switch( $langParam ) {
-  { $_ -match '^(English|en)$' } { 'lips103.zip'; break }
-  { $_ -match '^(Croatian|Hrvatska|hr|hr-HR)$' } { 'lipscr103.zip'; break }
-  { $_ -match '^(Dutch|Netherlands|Nederlands|nl|nl-NL)$' } { 'lipsne103.zip'; break }
-  { $_ -match '^(German|Deutsche|de|de-DE)$' } { 'lipsde103.zip'; break }
-  { $_ -match '^(Portuguese|Brazil|pt|pt-BR)$' } { 'lipsportbrazil103.zip'; break }
-  { $_ -match '^(Spanish|es|es-[a-z]+)$' } { 'lipsspanish103.zip'; break } # Not sure which dialect so just accept any dialect for the es locale id
-  { $_ -match '^(Swedish|sv-SE)$' } { 'lipssw103.zip'; break }
+  'English' { 'lips103.zip'; break }
+  'Croatian' { 'lipscr103.zip'; break }
+  'Dutch' { 'lipsne103.zip'; break }
+  'German' { 'lipsde103.zip'; break }
+  'Portuguese' { 'lipsportbrazil103.zip'; break }
+  'Spanish' { 'lipsspanish103.zip'; break }
+  'Swedish' { 'lipssw103.zip'; break }
 
-  default { throw "Unsupported language: $langParam"; break }
+  default { throw 'Specified language must be one of the following: English, Croatian, Dutch, German, Portuguese, Spanish, or Swedish'; break }
 })"
 
 $packageArgs = @{
