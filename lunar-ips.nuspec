@@ -12,7 +12,7 @@
     <title>LunarIPS Patching Utility</title>
     <authors>FuSoYa</authors>
     <projectUrl>https://fusoya.eludevisibility.org/lips/</projectUrl>
-    <iconUrl>http://rawcdn.githack.com/https://github.com/codewario/chocolatey-lunar-ips/master/icons/lunar-ips.png</iconUrl>
+    <iconUrl>https://raw.githubusercontent.com/codewario/chocolatey-lunar-ips/master/icons/lunar-ips.png</iconUrl>
     <copyright>2022 FuSoYa</copyright>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <tags>lunar-ips lunarips lunar ips patching snestool snes-tool</tags>
