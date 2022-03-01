@@ -82,4 +82,7 @@ choco pack ./lunar-ips.nuspec --force
 
 # Install the local nupkg
 choco install -y lunar-ips -s .
+
+# Push to community feed (those with permissions)
+choco push NUPKG_FILE --source https://push.chocolatey.org
 ```

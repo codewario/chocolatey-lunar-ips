@@ -7,7 +7,7 @@
   <metadata>
     <id>lunar-ips</id>
     <version>1.03</version>
-    <packageSourceUrl>https://github.com/codewario/choco-lunar-ips</packageSourceUrl>
+    <packageSourceUrl>https://github.com/codewario/chocolatey-lunar-ips</packageSourceUrl>
     <owners>codewario</owners>
     <title>LunarIPS Patching Utility</title>
     <authors>FuSoYa</authors>
