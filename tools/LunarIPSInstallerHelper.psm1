@@ -1,7 +1,7 @@
 using namespace System
 using namespace System.Security.Principal
 
-#Requires -Version 5.1
+#Requires -Version 4.0
 
 enum WindowStyle {
     Default = 1
