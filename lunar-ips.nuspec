@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Read this before creating packages: https://docs.chocolatey.org/en-us/create/create-packages -->
+<!-- This is a nuspec. It mostly adheres to https://docs.nuget.org/create/Nuspec-Reference. Chocolatey uses a special version of NuGet.Core that allows us to do more than was initially possible. -->
+<!-- Do not remove this test for UTF-8: if “Ω” doesn’t appear as greek uppercase omega letter enclosed in quotation marks, you should use an editor that supports UTF-8, not this one. -->
+
+<package xmlns="http://schemas.microsoft.com/packaging/2015/06/nuspec.xsd">
+  <metadata>
+    <id>lunar-ips</id>
+    <version>1.03</version>
+    <packageSourceUrl>https://github.com/codewario/choco-lunar-ips</packageSourceUrl>
+    <owners>codewario</owners>
+    <title>LunarIPS Patching Utility</title>
+    <authors>FuSoYa</authors>
+    <projectUrl>https://fusoya.eludevisibility.org/lips/</projectUrl>
+    <iconUrl>http://rawcdn.githack.com/https://github.com/codewario/chocolatey-lunar-ips/master/icons/lunar-ips.png</iconUrl>
+    <copyright>2022 FuSoYa</copyright>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <tags>lunar-ips lunarips lunar ips patching snestool snes-tool</tags>
+    <summary>Lunar IPS (LIPS) is intended as an easy to use, lightweight IPS patch utility for windows to replace the SNESTool DOS program. It can both create and apply IPS patches.</summary>
+    <description>
+      **FuSoYa** is not affiliated with this package in any way, so **do not reach out to them for issues with this package**. Likewise, problems with the LunarIPS software itself should not be reported to this package's Github issue tracker.
+      
+      Please check the **Software Site** or installed `README.txt` for **Lunar IPS** information and how you can report issues with the software.
+
+      ---
+
+      **Lunar IPS (LIPS)** is intended as an easy to use, lightweight IPS patch utility for windows to replace the **SNESTool** DOS program. It can both create and apply IPS patches.
+
+      As far as features go, LIPS has:
+      - IPS patch creation/application support.
+      - full RLE encoding/decoding support.
+      - file expanding/truncating support.
+      - the IPS encoder creates files that are the same size or smaller than files created with **SNESTool**.
+      - the IPS encoder avoids the rare "0x454F46 (EOF) offset bug" that **SNESTool's** IPS encoder has.
+      - logging feature for applying IPS patches (ROMFileName.log).
+      - registers the ".IPS" file type so that you can just double click on an IPS file and choose the file to apply it to for convenience.
+      - support for patching files up to 16 MB in size, which is the limit of the IPS format. The files can technically be larger than that, but the IPS format cannot record changes beyond the 16 MB mark due to 24-bit addressing. The IPS file itself can be any size.
+
+      Note that the logging and file registration options are saved to the registry.
+    </description>
+    <releaseNotes>Release notes can be found on [FuSoYa's Niche](http://fusoya.eludevisibility.org/) news page, or in the readme provided with the LunarIPS software itself.</releaseNotes>
+    <dependencies>
+      <dependency id="chocolatey-core.extension" version="1.1.0" />
+    </dependencies>
+  </metadata>
+  <files>
+    <file src="tools\**" target="tools" />
+  </files>
+</package>
