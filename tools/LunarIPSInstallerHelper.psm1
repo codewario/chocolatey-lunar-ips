@@ -1,11 +1,5 @@
 #Requires -Version 4.0
 
-enum WindowStyle {
-    Default = 1
-    Maximized = 3
-    Minimized = 7
-}
-
 function Confirm-Administrator {
     [Security.Principal.WindowsPrincipal]$me = [Security.Principal.WindowsIdentity]::GetCurrent()
     $me.IsInRole([Security.Principal.WindowsBuiltInRole] "Administrator")
@@ -22,7 +16,8 @@ function New-StartMenuShortcut {
         [string]$Path,
         [string]$Arguments,
         [string]$WorkingDirectory,
-        [WindowStyle]$WindowStyle = [WindowStyle]::Default,
+        [ValidateSet('Default', 'Maximimed', 'Minimized')]
+        [string]$WindowStyle = 'Default',
         [string]$IconLocation,
         [string]$Description
     )
@@ -54,6 +49,18 @@ function New-StartMenuShortcut {
         Remove-Item -Force $lnkFullPath
     }
 
+    # Determine correct WindowStyle Value
+    # 1 is Default
+    # 3 is Minimized
+    # 7 is Maximized
+    # This was an enum but community packages must be 4.0 compliant
+    $useWindowStyle = switch( $WindowStyle ) {
+        'Default' { 1; break }
+        'Minimized' { 3; break }
+        'Maximized' { 7; break }
+        default { throw 'Unknown WindowStyle specified' }
+    }
+
     # For some reason the Windows Scripting Host remains the only way to create
     # .lnk files outside of the Win32 API 
     $shell = New-Object -ComObject 'WScript.Shell'
@@ -67,7 +74,7 @@ function New-StartMenuShortcut {
     $lnk.TargetPath = $Path
     $lnk.Arguments = $Arguments
     $lnk.WorkingDirectory = $WorkingDirectory
-    $lnk.WindowStyle = $WindowStyle
+    $lnk.WindowStyle = $useWindowStyle
     $lnk.IconLocation = $IconLocation
     $lnk.Description = $Description
     $lnk.Save()
