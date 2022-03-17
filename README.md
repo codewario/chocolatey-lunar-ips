@@ -20,15 +20,22 @@ Note that the logging and file registration options are saved to the registry.
 
 ## Installation
 
-> **Note:** This package has not yet been uploaded as of this time of writing. This disclaimer will be removed once the package is available on the community feed.
-
 You must ensure [Chocolatey is installed](https://chocolatey.org/install) before you consume this package.
 
-Once Chocolatey is installed, run the following to install **Lunar IPS**
+Once Chocolatey is installed, run the following to install **Lunar IPS**:
 
 ```powershell
+# This will install the English language by default
 choco install lunar-ips
 ```
+
+This tool is not updated often, but to update this package:
+
+```powershell
+choco upgrade lunar-ips
+```
+
+It is possible the package itself may see updates based on feedback and filed issues, so it's still important to know how to upgrade the package.
 
 ### Different Languages
 
@@ -41,7 +48,9 @@ choco install lunar-ips --params "'/Language:German'"
 If we later decide we want another language, we can force-install with that language instead:
 
 ```powershell
-choco install lunar-ips --params "'/Language:English'"
+# Only provide --force if the package is already installed and you wish to switch languages for the same version
+# Do not provide --force in upgrade scenarios per Chocolatey recommendations
+choco install lunar-ips --params "'/Language:English'" --force
 ```
 
 At this time of writing, **Lunar IPS** supports the following languages:
